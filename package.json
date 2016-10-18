@@ -1,0 +1,23 @@
+{
+  "name": "lc-jsonp",
+  "version": "1.0.0",
+  "description": "JSONP request",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elantion/lc-jsonp.git"
+  },
+  "keywords": [
+    "ajax",
+    "jsonp"
+  ],
+  "author": "JamesYin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elantion/lc-jsonp/issues"
+  },
+  "homepage": "https://github.com/elantion/lc-jsonp#readme"
+}

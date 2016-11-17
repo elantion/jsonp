@@ -1,15 +1,16 @@
 window.loadJsonp = {};
 window.loadJsonp.counter = 0;
-module.exports = function jsonp(url, parameter) {
+var jsnop = function (url, parameter) {
     return new Promise(function (resolve) {
+        //make callback
         var callbackName = 'cb_' + window.loadJsonp.counter;
         var fullCallbackName = 'window.loadJsonp.' + callbackName;
         window.loadJsonp.counter++;
         window.loadJsonp[callbackName] = function (res) {
             resolve(res);
+            delete window.loadJsonp[callbackName];
         };
-        var head = document.getElementsByTagName('head')[0];
-        var script = document.createElement('script');
+        //make url
         var query = [];
         if(parameter){
             for(var key in parameter){
@@ -26,11 +27,21 @@ module.exports = function jsonp(url, parameter) {
         if(!/\?/.test(url)){
             url += '?';
         }
-        script.setAttribute('src', url + query.join('&'));
-        head.appendChild(script);
-        script.addEventListener('load', function () {
-            script.parentElement.removeChild(script);
+        var fullUrl = url + query.join('&');
+        if(fullUrl.length > 2000){
+            console.error('jsonp request url too long. Request failed.');
             delete window.loadJsonp[callbackName];
+            return;
+        }
+        //make request
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.addEventListener('load', function () {
+            console.log('jsonp load event');
+            script.parentElement.removeChild(script);
         });
+        script.setAttribute('src', fullUrl);
+        head.appendChild(script);
     });
 };
+module.exports = jsnop;

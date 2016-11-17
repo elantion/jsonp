@@ -1,6 +1,6 @@
 {
   "name": "lc-jsonp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JSONP request",
   "main": "index.js",
   "scripts": {

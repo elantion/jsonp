@@ -1,7 +1,7 @@
 window.loadJsonp = {};
 window.loadJsonp.counter = 0;
 var jsnop = function (url, parameter) {
-    return new Promise(function (resolve) {
+    return new Promise(function (resolve, reject) {
         //make callback
         var callbackName = 'cb_' + window.loadJsonp.counter;
         var fullCallbackName = 'window.loadJsonp.' + callbackName;
@@ -37,7 +37,11 @@ var jsnop = function (url, parameter) {
         var head = document.getElementsByTagName('head')[0];
         var script = document.createElement('script');
         script.addEventListener('load', function () {
-            console.log('jsonp load event');
+            script.parentElement.removeChild(script);
+        });
+        script.addEventListener('error', function () {
+            console.error('jsonp load error');
+            reject();
             script.parentElement.removeChild(script);
         });
         script.setAttribute('src', fullUrl);

@@ -19,9 +19,10 @@ jsonp(url, arg)
         }
     );
 
-//jsonp is a bluebird Promise object, so you can use bluebird API as well.
+//jsonp is a Promise object, you can use bluebird resolve it and use timeout function.
+var Promise = require('bluebird');
 var timeout = 300; //milliseconds
-jsonp(url, arg)
+Promise.resolve(jsonp(url, arg))
     .timeout(timeout, 'TimeoutError')
     .then(function(res){
             console.log(res);

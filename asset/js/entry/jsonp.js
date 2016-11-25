@@ -1,5 +1,3 @@
-const Promise = require('bluebird');
-
 window.loadJsonp = {};
 window.loadJsonp.counter = 0;
 let jsnop = function (url, parameter) {

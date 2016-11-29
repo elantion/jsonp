@@ -27,7 +27,9 @@ let jsnop = function (url, parameter) {
         if(!/\?/.test(url)){
             url += '?';
         }else{
-            url += '&';
+            if(query.length){
+                url += '&';
+            }
         }
         let fullUrl = url + query.join('&');
         if(fullUrl.length > 2000){

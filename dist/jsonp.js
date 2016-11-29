@@ -52,13 +52,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(1);
-
-
-/***/ },
-/* 1 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -92,7 +85,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (!/\?/.test(url)) {
 	            url += '?';
 	        } else {
-	            url += '&';
+	            if (query.length) {
+	                url += '&';
+	            }
 	        }
 	        var fullUrl = url + query.join('&');
 	        if (fullUrl.length > 2000) {

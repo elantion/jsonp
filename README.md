@@ -23,11 +23,11 @@ jsonp(url, arg)
 var Promise = require('bluebird');
 var timeout = 300; //milliseconds
 Promise.resolve(jsonp(url, arg))
-    .timeout(timeout, 'TimeoutError')
+    .timeout(timeout)
     .then(function(res){
             console.log(res);
         }
-    ).catch(new Error('TimeoutError'), function() {
+    ).catch(Promise.TimeoutError, function() {
       console.error('Request time out, do something.');
     });
 ```

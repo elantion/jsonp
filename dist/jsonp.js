@@ -102,12 +102,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            script.parentElement.removeChild(script);
 	        });
 	        script.addEventListener('error', function () {
-	            console.error('Jsonp load error');
+	            console.error('Server load error');
 	            reject();
 	            script.parentElement.removeChild(script);
 	        });
 	        script.setAttribute('src', fullUrl);
 	        head.appendChild(script);
+	    }).catch(function (error) {
+	        console.error(error.stack);
 	    });
 	};
 	module.exports = jsnop;
